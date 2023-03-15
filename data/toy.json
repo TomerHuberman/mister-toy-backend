@@ -32,7 +32,7 @@
   {
     "_id": "MnO7p",
     "name": "Rubik's Cube",
-    "price": 10,
+    "price": 15,
     "labels": [
       "Puzzle"
     ],
@@ -42,7 +42,7 @@
   {
     "_id": "HgF5s",
     "name": "Remote Control Car",
-    "price": 50,
+    "price": 40,
     "labels": [
       "On wheels",
       "Battery Powered"
