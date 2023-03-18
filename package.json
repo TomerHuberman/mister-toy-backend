@@ -1,20 +1,24 @@
 {
-  "name": "todo-vuex",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "show-files": "dir",
-    "pingo": "ping google.com",
-    "start": "node server.js",
-    "dev": "set PORT=3030 & nodemon --ignore \"./data\" server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "cryptr": "^6.0.3",
-    "express": "^4.18.1"
-  }
+    "name": "server",
+    "version": "1.0.0",
+    "description": "production ready server",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js",
+        "server:dev": "nodemon server.js",
+        "server:prod": "set NODE_ENV=production&&node server.js"
+    },
+    "author": "Me",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "cryptr": "^6.0.3",
+        "express": "^4.17.1",
+        "mongodb": "^3.2.7"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
 }
