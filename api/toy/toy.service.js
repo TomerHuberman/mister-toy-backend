@@ -93,11 +93,22 @@ async function addToyMsg(toyId, msg) {
     }
 }
 
+async function getMsgById(toyId, msgId) {
+    try {
+        const toy = await getById(toyId)
+        console.log("toy: ", toy);
+        return toy.msgs.find(msg => msg.id === msgId)
+    } catch (err) {
+        logger.error(`cannot add toy msg ${toyId}`, err)
+        throw err
+    }
+}
+
 async function removeToyMsg(toyId, msgId) {
     try {
         const collection = await dbService.getCollection('toy')
         await collection.updateOne({ _id: ObjectId(toyId) }, { $pull: { msgs: { id: msgId } } })
-        return msgId
+        return  
     } catch (err) {
         logger.error(`cannot add toy msg ${toyId}`, err)
         throw err
@@ -111,5 +122,6 @@ module.exports = {
     add,
     update,
     addToyMsg,
-    removeToyMsg
+    removeToyMsg,
+    getMsgById
 }
