@@ -87,11 +87,15 @@ async function addToyMsg(req, res) {
   }
 }
 
+
+
 async function removeToyMsg(req, res) {
   const { loggedinUser } = req
   try {
     const { toyId } = req.params
     const { msgId } = req.params
+    const msg = await toyService.getMsgById(toyId, msgId)
+    if (loggedinUser._id !== msg.by._id) return res.status(401).send('Not Authenticated')
 
     const removedId = await toyService.removeToyMsg(toyId, msgId)
     res.send(removedId)
