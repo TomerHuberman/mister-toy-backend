@@ -1,4 +1,5 @@
 const toyService = require('./toy.service.js')
+const asyncLocalStorage = require('../../services/als.service')
 
 const logger = require('../../services/logger.service')
 
@@ -33,7 +34,7 @@ async function getToyById(req, res) {
 }
 
 async function addToy(req, res) {
-  const { loggedinUser } = req
+  const { loggedinUser } = asyncLocalStorage.getStore()
 
   try {
     const toy = req.body
@@ -61,8 +62,8 @@ async function updateToy(req, res) {
 
 async function removeToy(req, res) {
   try {
-    const { toyId } = req.params
-    await toyService.remove(toyId)
+    const { id } = req.params
+    await toyService.remove(id)
     res.send()
   } catch (err) {
     logger.error('Failed to remove toy', err)
@@ -71,7 +72,7 @@ async function removeToy(req, res) {
 }
 
 async function addToyMsg(req, res) {
-  const { loggedinUser } = req
+  const { loggedinUser } = asyncLocalStorage.getStore()
   try {
     const { toyId } = req.params
     const msg = {
@@ -90,7 +91,7 @@ async function addToyMsg(req, res) {
 
 
 async function removeToyMsg(req, res) {
-  const { loggedinUser } = req
+  const { loggedinUser } = asyncLocalStorage.getStore()
   try {
     const { toyId } = req.params
     const { msgId } = req.params

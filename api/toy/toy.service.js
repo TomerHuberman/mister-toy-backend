@@ -33,6 +33,7 @@ function _buildCriteria(filterBy) {
 }
 
 async function getById(toyId) {
+    console.log("toyId: ", toyId);
     try {
         const collection = await dbService.getCollection('toy')
         const toy = collection.findOne({ _id: ObjectId(toyId) })
@@ -46,7 +47,7 @@ async function getById(toyId) {
 async function remove(toyId) {
     try {
         const collection = await dbService.getCollection('toy')
-        await collection.deleteOne({ _id: ObjectId(toyId) })
+        await collection.deleteOne({ _id: new ObjectId(toyId) })
     } catch (err) {
         logger.error(`cannot remove toy ${toyId}`, err)
         throw err
