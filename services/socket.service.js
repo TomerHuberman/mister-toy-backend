@@ -42,6 +42,11 @@ function setupSocketAPI(http) {
             logger.info(`Removing socket.userId for socket [id: ${socket.id}]`)
             delete socket.userId
         })
+        socket.on('user-typing', txt => {
+            logger.info(`${txt} for socket [id: ${socket.id}]`)
+            gIo.to(socket.myTopic).emit('user-typing', txt)
+            // broadcast({type: 'user-typing',data: txt, label: socket.myTopic})
+        })
 
     })
 }
